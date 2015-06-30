@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.10'
+before_install：
+- |
+	npm install -g hexo
+script:
+	hexo g
+	hexo deploy
