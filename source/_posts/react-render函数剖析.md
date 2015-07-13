@@ -1,6 +1,6 @@
 title: react render函数剖析
 date: 2015-06-28 17:42:55
-tags:[react]
+tags: [react]
 ---
 
 render
