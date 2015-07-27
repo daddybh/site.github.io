@@ -14,7 +14,7 @@ react通过一个React.render函数来渲染启动一个app，具体这个函数
 
 最终生成ReactElement是一个树形结构，子元素保存在`_store.props`属性中
 
-{% asset_img ReactElement.png [ReactElement树形结构] %}
+{% asset_img ReactElement.png ReactElement树形结构 %}
 
 ## render函数
 
@@ -51,9 +51,13 @@ ReactElement树创建之后，通过React.render方法，将树生成具体的ht
 
 *Transaction概念*
 
-```
-从源代码的注释可以看到，Transaction.perform 方法提供了一个执行函数的黑盒，在函数开始时执行wrapper的`initialize`方法，结束后调用`close`方法。Transaction作为一个基类，其它Transaction可以从它继承perform方法。
-```
+
+    从源代码的注释可以看到，Transaction.perform 方法提供了一个执行函数的黑盒，
+
+    在函数开始时执行wrapper的`initialize`方法，结束后调用`close`方法。
+
+    Transaction作为一个基类，其它Transaction可以从它继承perform方法。
+
 
 TransactionWrapper，是一个提供`initialize`和`close`方法的简单对象
 
@@ -67,12 +71,12 @@ Transaction 主要用途：
 * 渲染新内容后，调用所有的`componentDidUpdate`函数
 
 
-_renderNewRootComponent 使用两个Transaction：
+_renderNewRootComponent 在两个Transaction中执行：
 
-* ReactDefaultBatchingStrategyTransaction
-* ReactReconcileTransaction
+* ReactDefaultBatchingStrategyTransaction 用于启动批量渲染
+* ReactReconcileTransaction 执行渲染及子元素的渲染
 
 下面是一个渲染全新React组件的核心流程:
 
-{% asset_img _renderNewRootComponent.png [render内部函数调用关系] %}
+{% asset_img renderNewRootComponent.png render内部函数调用关系 %}
 
